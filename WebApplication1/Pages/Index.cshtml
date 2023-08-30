@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<form method="post">
+	@if (Model.CurrentStep == FormStep.Name)
+	{
+		<label>Navn:</label><br />
+		<input type="text" asp-for="Name" /><br />
+	}
+	else if (Model.CurrentStep == FormStep.Email)
+	{
+		<input type="hidden" asp-for="Name" />
+		<label>E-post:</label><br />
+		<input type="text" asp-for="Email" /><br />
+	}
+	else if (Model.CurrentStep == FormStep.Age)
+	{
+		<input type="hidden" asp-for="Name" />
+		<input type="hidden" asp-for="Email" />
+		<label>Alder:</label><br />
+		<input type="number" asp-for="Age" /><br />
+	}
+	else
+	{
+		<p>Registrert @Model.Name - @Model.Email - @Model.Age</p>
+		return;
+	}
+	<input type="submit" />
+</form>
+</body>
+</html>
